@@ -1,5 +1,9 @@
 import os
 
+from crypto.py import derive_key
+from crypto.py import encrypt_file
+from crypto.py import decrypt_file
+
 def start():
     action = False 
     while action is False:
@@ -11,7 +15,7 @@ def start():
     return usage
 
 def encrypt_db():
-    return false
+    
 
 def new_safebox():
     created_db = False
@@ -34,13 +38,13 @@ def new_safebox():
                 db = open(location, "x")
                 created_db = True
             except FileExistsError:
-                print("This file already exists")
+                print("This file already exists \n Try again.")
         else:
             try:
                 db = open("../" + filename, "x")
                 created_db = True
             except FileExistsError:
-                print("This file already exists")
+                print("This file already exists \n Try again.")
 
 def main():
     if start() == "1":
