@@ -1,8 +1,6 @@
 import os
 
-from crypto.py import derive_key
-from crypto.py import encrypt_file
-from crypto.py import decrypt_file
+from crypto import *
 
 def start():
     action = False 
@@ -13,8 +11,6 @@ def start():
         elif usage == "2":
             action = True
     return usage
-
-def encrypt_db():
     
 
 def new_safebox():
@@ -37,18 +33,36 @@ def new_safebox():
             try:
                 db = open(location, "x")
                 created_db = True
+                password = password_declaration()
+                encrypt_file(location, location, password)
             except FileExistsError:
                 print("This file already exists \n Try again.")
         else:
             try:
                 db = open("../" + filename, "x")
                 created_db = True
+                password = password_declaration()
+                encrypt_file("../" + filename, "../" + filename, password)
             except FileExistsError:
                 print("This file already exists \n Try again.")
+
+
+def existing_safebox():
+    selected_file = False
+    while selected_file is False:
+        db = input("Enter the location of your .kmdb file : ")
+        if os.path.exists(db):
+            password = input("Enter the password to unlock your password database : ")
+            decrypt_file(db, db, password)
+            selected_file = True
+        else:
+            print("This file does not exist")
+
 
 def main():
     if start() == "1":
         print("Select your db file and enter you password")
+        existing_safebox()
     else:
         print("Let's create a new safe box")
         new_safebox()

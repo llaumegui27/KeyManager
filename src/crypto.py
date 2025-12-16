@@ -73,7 +73,3 @@ def decrypt_file(input_path: str, output_path: str, password: str):
 
     print("✔ File decrypted:", output_path)
 
-password = password_declaration()
-encrypt_file("hello.kmdb", "hello.kmdb", password)
-input("Press ENTER to decrypt...")
-decrypt_file("hello.kmdb", "hello.kmdb", password)
